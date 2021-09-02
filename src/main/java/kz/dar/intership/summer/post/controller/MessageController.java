@@ -1,7 +1,7 @@
 package kz.dar.intership.summer.post.controller;
 
 import kz.dar.intership.summer.post.model.MessageDTO;
-import kz.dar.intership.summer.post.service.impl.MessageServiceImpl;
+import kz.dar.intership.summer.post.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,32 +13,33 @@ import java.util.List;
 @RestController
 @RequestMapping("/post")
 public class MessageController {
+
     @Autowired
-    private MessageServiceImpl messageServiceImpl;
+    private MessageService messageService;
 
     @GetMapping("/messages")
     public List<MessageDTO> getAllMessages() {
-        return messageServiceImpl.getAllMessages();
+        return messageService.getAllMessages();
     }
 
     @PostMapping("/create")
     public ResponseEntity<MessageDTO> createMessage(@Valid @RequestBody MessageDTO messageDTO) {
-        messageServiceImpl.createMessage(messageDTO);
+        messageService.createMessage(messageDTO);
         return new ResponseEntity<>(messageDTO, HttpStatus.OK);
     }
 
     @GetMapping("/check-status/{messageId}")
     public String checkMessageStatus(@PathVariable Long messageId) {
-        return messageServiceImpl.checkMessageStatus(messageId);
+        return messageService.checkMessageStatus(messageId);
     }
 
     @PutMapping("/send/{messageId}")
     public ResponseEntity<MessageDTO> sendMessage(@PathVariable Long messageId) {
-        return new ResponseEntity<>(messageServiceImpl.sendMessage(messageId), HttpStatus.OK);
+        return new ResponseEntity<>(messageService.sendMessage(messageId), HttpStatus.OK);
     }
 
     @PutMapping("/update/{messageId}")
     public ResponseEntity<MessageDTO> updateMessage(@Valid @RequestBody MessageDTO messageDTO, @PathVariable Long messageId) {
-        return new ResponseEntity<>(messageServiceImpl.updateMessage(messageDTO, messageId), HttpStatus.OK);
+        return new ResponseEntity<>(messageService.updateMessage(messageDTO, messageId), HttpStatus.OK);
     }
 }
