@@ -3,6 +3,7 @@ package kz.dar.intership.summer.post.controller;
 import kz.dar.intership.summer.post.model.MessageDTO;
 import kz.dar.intership.summer.post.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/post")
 public class MessageController {
+
+    @Autowired
+    Environment environment;
+
+    @GetMapping("/health-check")
+    public String healthCheck() {
+        return "It's  Working port: " + environment.getProperty("local.server.port");
+    }
 
     @Autowired
     private MessageService messageService;
