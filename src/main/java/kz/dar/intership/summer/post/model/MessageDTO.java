@@ -7,9 +7,15 @@ public class MessageDTO {
 
     private Long id;
 
+    private Long recipientId;
+
     @NotNull(message = "recipient can not be null")
     @Email
-    private String recipient;
+    private String recipientEmail;
+
+    private String recipientLastName;
+
+    private String recipientFirstName;
 
     @NotNull(message = "title can not be null")
     @NotNull
@@ -22,9 +28,12 @@ public class MessageDTO {
     public MessageDTO() {
     }
 
-    public MessageDTO(@NotNull Long id, @NotNull @Email String recipient, @NotNull String title, String text, String status) {
+    public MessageDTO(Long id, Long recipientId, String recipientEmail, String recipientLastName, String recipientFirstName, String title, String text, String status) {
         this.id = id;
-        this.recipient = recipient;
+        this.recipientId = recipientId;
+        this.recipientEmail = recipientEmail;
+        this.recipientLastName = recipientLastName;
+        this.recipientFirstName = recipientFirstName;
         this.title = title;
         this.text = text;
         this.status = status;
@@ -38,12 +47,36 @@ public class MessageDTO {
         this.id = id;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public Long getRecipientId() {
+        return recipientId;
     }
 
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
+    public void setRecipientId(Long recipientId) {
+        this.recipientId = recipientId;
+    }
+
+    public String getRecipientEmail() {
+        return recipientEmail;
+    }
+
+    public void setRecipientEmail(String recipientEmail) {
+        this.recipientEmail = recipientEmail;
+    }
+
+    public String getRecipientLastName() {
+        return recipientLastName;
+    }
+
+    public void setRecipientLastName(String recipientLastName) {
+        this.recipientLastName = recipientLastName;
+    }
+
+    public String getRecipientFirstName() {
+        return recipientFirstName;
+    }
+
+    public void setRecipientFirstName(String recipientFirstName) {
+        this.recipientFirstName = recipientFirstName;
     }
 
     public String getTitle() {

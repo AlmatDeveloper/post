@@ -3,7 +3,6 @@ package kz.dar.intership.summer.post.entity;
 import kz.dar.intership.summer.post.entity.enumeration.Status;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,8 +14,7 @@ public class Message {
     private Long id;
 
     @NotNull
-    @Email
-    private String recipient;
+    private Long recipientId;
 
     @NotNull
     private String title;
@@ -29,9 +27,9 @@ public class Message {
     public Message() {
     }
 
-    public Message(Long id, @NotNull @Email String recipient, @NotNull String title, String text, Status status) {
+    public Message(Long id, Long recipientId, String title, String text, Status status) {
         this.id = id;
-        this.recipient = recipient;
+        this.recipientId = recipientId;
         this.title = title;
         this.text = text;
         this.status = status;
@@ -45,12 +43,12 @@ public class Message {
         this.id = id;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public Long getRecipientId() {
+        return recipientId;
     }
 
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
+    public void setRecipientId(Long recipientId) {
+        this.recipientId = recipientId;
     }
 
     public String getTitle() {
